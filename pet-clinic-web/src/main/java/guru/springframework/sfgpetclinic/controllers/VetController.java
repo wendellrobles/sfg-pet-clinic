@@ -10,29 +10,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
 
-/**
- * Created by jt on 7/22/18.
- */
 @Controller
 public class VetController {
 
-    private final VetService vetService;
+  private final VetService vetService;
 
-    public VetController(VetService vetService) {
-        this.vetService = vetService;
-    }
+  public VetController(VetService vetService) {
+    this.vetService = vetService;
+  }
 
-    @RequestMapping({"/vets", "/vets/index", "/vets/index.html", "/vets.html"})
-    public String listVets(Model model){
+  @RequestMapping({"/vets", "/vets/index", "/vets/index.html", "/vets.html"})
+  public String listVets(Model model) {
 
-        model.addAttribute("vets", vetService.findAll());
+    model.addAttribute("vets", vetService.findAll());
 
-        return "vets/index";
-    }
+    return "vets/index";
+  }
 
-    @GetMapping("/api/vets")
-    public @ResponseBody Set<Vet> getVetsJson(){
+  @GetMapping("/api/vets")
+  public @ResponseBody Set<Vet> getVetsJson() {
 
-        return vetService.findAll();
-    }
+    return vetService.findAll();
+  }
 }
